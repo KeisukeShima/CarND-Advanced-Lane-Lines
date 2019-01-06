@@ -95,13 +95,24 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+I used a function called `find_lane_pixels()` in the functipn `fit_polynomial()` in my code in `main.ipynb`.  
+I modified hyperparameters such as number of windows, wondows margin and minimum number of pixels in the find_lane_pixels(). I used sliding window approach with those hyperparameters.  
+It worked correctly with all sample images.
 
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in functions `measure_curvature_real()` and `vehicle_offset()` in my code in `main.ipynb`
+I did this in functions `measure_curvature_real()` and `vehicle_offset()` in my code in `main.ipynb`  
+
+* Curvature
+
+I defined conversions in x and  from pixels space to meters. Vertical conversion is set to 30 meters per 700 pixels because the lane length is about 30 meters and lane length in the image is about 700 pixels.  
+Horizontal convension is set to 3.7 meters per 700 pixels because lane width is 3.7 meters and lane width in the image is about 700 pixels.
+
+* Offset
+
+I defined the center is half of the width of the image. I calculated the center of the lane from the position of the left lane and the position of the right lane and decided the offset from the difference from the center of the image.
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
